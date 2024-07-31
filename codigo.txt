@@ -10,6 +10,7 @@
 --------------------------------------------------------------------
       var collision = Matter.SAT.collides(balls[i].body, boats[j].body);
       if (collision.collided) {
+        boats[j].remove(j);
         Matter.World.remove(world, balls[i].body);
         balls.splice(i, 1);
         i--;
@@ -20,3 +21,17 @@
   pirateLaughSound = loadSound("./assets/pirate_laugh.mp3");
   cannonExplosion = loadSound("./assets/cannon_explosion.mp3");
 -----------------------------------------------------------------------------
+function gameOver() {
+  swal(
+    {
+      title: `¡Fin del juego!`,
+      confirmButtonText: "Jugar de nuevo"
+    },
+    function(isConfirm) {
+      if (isConfirm) {
+        location.reload();
+      }
+    }
+  );
+}
+--------------------------------------------------------------------------------------
